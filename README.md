@@ -36,20 +36,3 @@ Edita `js/data.js`. Cada categoría tiene:
 
 No se requiere tocar `app.js` ni `styles.css` para agregar componentes o incluso categorías nuevas, siempre que sigas esta misma estructura.
 
-## Despliegue en GitHub Pages
-
-1. Sube esta carpeta como raíz de un repositorio (o dentro de `/docs` si prefieres esa convención).
-2. En **Settings → Pages**, selecciona la rama y carpeta donde está `index.html`.
-3. Guarda — GitHub publicará el sitio en `https://<usuario>.github.io/<repositorio>/`.
-
-No hay dependencias de build, empaquetado ni Node.js: los archivos se sirven tal cual.
-
-## Ejecutar en local
-
-Como usa `fetch`-free vanilla JS (no hay módulos ES ni CORS), puedes simplemente abrir `index.html` en el navegador. Si prefieres un servidor local:
-
-```bash
-npx serve .
-# o
-python3 -m http.server 8000
-```
