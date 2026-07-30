@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechCompare — Comparador de componentes de PC</title>
+  <meta name="description" content="Compara CPU, GPU, RAM y SSD lado a lado y descubre qué componente rinde más en cada especificación." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="encabezado-sitio">
+    <div class="interior-encabezado">
+      <a href="#" class="logo" aria-label="TechCompare — inicio">
+        <svg class="marca-logo" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M11 4 V28 M21 4 V28 M4 11 H28 M4 21 H28" stroke="currentColor" stroke-width="1.4" opacity="0.5"/>
+        </svg>
+        <span class="texto-logo">Tech<strong>Compare</strong></span>
+      </a>
+      <p class="eslogan">Lee el hardware como una lectura de laboratorio.</p>
+    </div>
+  </header>
+
+  <main id="principal">
+
+    <!-- Selector de categoría -->
+    <section class="barra-categorias" aria-label="Categoría de componente">
+      <div class="interior-barra-categorias" role="tablist" aria-label="Categorías">
+        <button class="pestana-categoria activa" role="tab" aria-selected="true" data-categoria="cpu">
+          <svg class="icono-categoria" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          CPU
+        </button>
+        <button class="pestana-categoria" role="tab" aria-selected="false" data-categoria="gpu">
+          <svg class="icono-categoria" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="12" r="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="15" cy="12" r="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          GPU
+        </button>
+        <button class="pestana-categoria" role="tab" aria-selected="false" data-categoria="ram">
+          <svg class="icono-categoria" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 5v3M11 5v3M15 5v3M7 16v3M11 16v3M15 16v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          RAM
+        </button>
+        <button class="pestana-categoria" role="tab" aria-selected="false" data-categoria="ssd">
+          <svg class="icono-categoria" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="15" r="1.4" fill="currentColor"/><path d="M6 8h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          SSD
+        </button>
+      </div>
+    </section>
+
+    <!-- Panel de selección -->
+    <section class="seccion-seleccion" aria-labelledby="titulo-seleccion">
+      <div class="interior-seccion">
+        <h2 id="titulo-seleccion" class="titulo-seccion">
+          <span class="etiqueta-seccion">01 — Selección</span>
+          Elige hasta 3 componentes para comparar
+        </h2>
+
+        <div class="fila-busqueda">
+          <label class="campo-busqueda">
+            <svg viewBox="0 0 24 24" class="icono-busqueda" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <input type="search" id="entrada-busqueda" placeholder="Buscar por nombre o marca…" aria-label="Buscar componente" />
+          </label>
+          <button id="limpiar-seleccion" class="boton-fantasma" type="button">Limpiar selección</button>
+        </div>
+
+        <div id="cuadricula-componentes" class="cuadricula-componentes" role="list" aria-label="Componentes disponibles"></div>
+      </div>
+    </section>
+
+    <!-- Panel de comparación -->
+    <section class="seccion-comparacion" aria-labelledby="titulo-comparacion">
+      <div class="interior-seccion">
+        <h2 id="titulo-comparacion" class="titulo-seccion">
+          <span class="etiqueta-seccion">02 — Lectura</span>
+          Comparación
+        </h2>
+
+        <div id="comparacion-vacia" class="comparacion-vacia">
+          <svg viewBox="0 0 48 48" aria-hidden="true" class="icono-vacio"><rect x="6" y="6" width="36" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/><path d="M16 32V20M24 32V14M32 32V24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.6"/></svg>
+          <p>Selecciona al menos 2 componentes arriba para ver la lectura comparativa.</p>
+        </div>
+
+        <div id="contenedor-tabla-comparacion" class="contenedor-tabla-comparacion" hidden>
+          <table class="tabla-comparacion" id="tabla-comparacion" aria-live="polite"></table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie-sitio">
+    <div class="interior-pie">
+      <p>TechCompare — MVP de comparación de hardware. Datos referenciales, sujetos a variación de mercado.</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
